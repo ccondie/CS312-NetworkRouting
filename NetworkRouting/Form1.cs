@@ -96,7 +96,7 @@ namespace NetworkRouting
             List<PointF> points = new List<PointF>();
             for (int i = 0; i < size; i++)
             {
-                points.Add(new PointF((float) (rand.NextDouble() * pictureBox.Width), (float) (rand.NextDouble() * pictureBox.Height)));
+                points.Add(new PointF((float)(rand.NextDouble() * pictureBox.Width), (float)(rand.NextDouble() * pictureBox.Height)));
             }
             return points;
         }
@@ -131,15 +131,15 @@ namespace NetworkRouting
             // This was the old entry point, but now it is just some form interface handling
             bool ready = true;
 
-            if(startNodeIndex == -1)
+            if (startNodeIndex == -1)
             {
                 sourceNodeBox.Focus();
                 sourceNodeBox.BackColor = Color.Red;
                 ready = false;
             }
-            if(stopNodeIndex == -1)
+            if (stopNodeIndex == -1)
             {
-                if(!sourceNodeBox.Focused)
+                if (!sourceNodeBox.Focused)
                     targetNodeBox.Focus();
                 targetNodeBox.BackColor = Color.Red;
                 ready = false;
@@ -153,7 +153,7 @@ namespace NetworkRouting
             {
                 ready = false;
             }
-            if(ready)
+            if (ready)
             {
                 clearSome();
                 solveButton_Clicked();  // Here is the new entry point
@@ -195,11 +195,11 @@ namespace NetworkRouting
         {
             if (points.Count > 0)
             {
-                try{ startNodeIndex = int.Parse(sourceNodeBox.Text); }
+                try { startNodeIndex = int.Parse(sourceNodeBox.Text); }
                 catch { startNodeIndex = -1; }
-                if (startNodeIndex < 0 | startNodeIndex > points.Count-1)
+                if (startNodeIndex < 0 | startNodeIndex > points.Count - 1)
                     startNodeIndex = -1;
-                if(startNodeIndex != -1)
+                if (startNodeIndex != -1)
                 {
                     sourceNodeBox.ResetBackColor();
                     resetImageToPoints(points);
@@ -215,9 +215,9 @@ namespace NetworkRouting
             {
                 try { stopNodeIndex = int.Parse(targetNodeBox.Text); }
                 catch { stopNodeIndex = -1; }
-                if (stopNodeIndex < 0 | stopNodeIndex > points.Count-1)
+                if (stopNodeIndex < 0 | stopNodeIndex > points.Count - 1)
                     stopNodeIndex = -1;
-                if(stopNodeIndex != -1)
+                if (stopNodeIndex != -1)
                 {
                     targetNodeBox.ResetBackColor();
                     resetImageToPoints(points);
@@ -226,7 +226,7 @@ namespace NetworkRouting
                 }
             }
         }
-        
+
         private void paintStartStopPoints()
         {
             if (startNodeIndex > -1)
@@ -253,7 +253,7 @@ namespace NetworkRouting
 
             for (int i = 0; i < points.Count; i++)
             {
-                double dist = Math.Sqrt(Math.Pow(points[i].X-mouseDownLocation.X,2) + Math.Pow(points[i].Y - mouseDownLocation.Y,2));
+                double dist = Math.Sqrt(Math.Pow(points[i].X - mouseDownLocation.X, 2) + Math.Pow(points[i].Y - mouseDownLocation.Y, 2));
                 if (dist < minDist)
                 {
                     minIndex = i;
@@ -262,6 +262,137 @@ namespace NetworkRouting
             }
 
             return minIndex;
+        }
+    }
+
+    public static class Dijkstra
+    {
+        public static List<int> runArray (List<HashSet<int>> adjList, List<PointF> pointList, int startIndex, int endIndex)
+        {
+            int[] dist = new int[pointList.Count];
+            int[] prev = new int[pointList.Count];
+
+            //for each point (i) in pointList, set dist[i] equal to infinity, and prev[i] to null
+            for (int i = 0; i < pointList.Count; i++)
+            {
+                dist[i] = int.MaxValue;
+                prev[i] = -1;
+            }
+
+            //the distance from the starting point to the starting point is 0, duh.
+            dist[startIndex] = 0;
+
+            //Build priorityQueue (pQueue), using distance values as keys
+            IPriorityQueue pQueue = new ArrayPQueue();
+
+            //while pQueue is not empty
+            while(pQueue.size() != 0)
+            {
+                //remove the smallest entry in the pQueue, store in minIndex
+                //for each element (adjPoint) in the adjList for index (minIndex)
+                    //if dist[adjPoint] > dist[minIndex] + length(minIdex, adjPoint)
+                        //dist[adjPoint] = dist[minIndex] + length(minIndex, adjPoint)
+                        //prev[adjPoint] = minIndex
+                        //decreaseKey(pQueue, adjPoint)
+            }
+                
+            return null;
+        }
+
+
+        public static List<int> runHeap(List<HashSet<int>> adjList, List<PointF> pointList, int startIndex, int endIndex)
+        {
+            int[] dist = new int[pointList.Count];
+            int[] prev = new int[pointList.Count];
+
+            //for each point (i) in pointList, set dist[i] equal to infinity, and prev[i] to null
+            for (int i = 0; i < pointList.Count; i++)
+            {
+                dist[i] = int.MaxValue;
+                prev[i] = -1;
+            }
+
+            //the distance from the starting point to the starting point is 0, duh.
+            dist[startIndex] = 0;
+
+            //Build priorityQueue (pQueue), using distance values as keys
+            //while pQueue is not empty
+            //remove the smallest entry in the pQueue, store in minIndex
+            //for each element (adjPoint) in the adjList for index (minIndex)
+            //if dist[adjPoint] > dist[minIndex] + length(minIdex, adjPoint)
+            //dist[adjPoint] = dist[minIndex] + length(minIndex, adjPoint)
+            //prev[adjPoint] = minIndex
+            //decreaseKey(pQueue, adjPoint)
+
+
+            return null;
+        }
+    }
+
+    interface IPriorityQueue
+    {
+        void insertKey();
+        void deleteMin();
+        void decreaseKey();
+        void makeQueue();
+
+        int size();
+    }
+
+    public class ArrayPQueue : IPriorityQueue
+    {
+        public void decreaseKey()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void deleteMin()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void insertKey()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void makeQueue()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int size()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
+    public class HeapPQueue : IPriorityQueue
+    {
+        public void decreaseKey()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void deleteMin()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void insertKey()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void makeQueue()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int size()
+        {
+            throw new NotImplementedException();
         }
     }
 }

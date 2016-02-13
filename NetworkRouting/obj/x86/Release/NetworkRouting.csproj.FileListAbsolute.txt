@@ -14,3 +14,5 @@
 C:\Users\Dan\Desktop\NetworkRouting\NetworkRouting\bin\Release\NetworkRouting.exe.config
 C:\Users\Dan\Desktop\NetworkRouting\NetworkRouting\obj\x86\Release\NetworkRouting.exe
 C:\Users\Dan\Desktop\NetworkRouting\NetworkRouting\obj\x86\Release\NetworkRouting.pdb
+C:\Users\clayt\Desktop\CS312-NetworkRouting\NetworkRouting\obj\x86\Release\NetworkRouting.exe
+C:\Users\clayt\Desktop\CS312-NetworkRouting\NetworkRouting\obj\x86\Release\NetworkRouting.pdb
