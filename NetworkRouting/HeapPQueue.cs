@@ -17,17 +17,12 @@ namespace NetworkRouting
             throw new NotImplementedException();
         }
 
-        public void insertKey()
+        public void makeQueue(double[] distVals)
         {
             throw new NotImplementedException();
         }
 
-        public void makeQueue()
-        {
-            throw new NotImplementedException();
-        }
-
-        public int size()
+        public int getSize()
         {
             throw new NotImplementedException();
         }

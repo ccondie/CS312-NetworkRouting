@@ -13,9 +13,13 @@ namespace NetworkRouting
         [STAThread]
         static void Main()
         {
+            Console.WriteLine("\n\nmain::start");
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+            Console.WriteLine("main::end");
         }
     }
 }

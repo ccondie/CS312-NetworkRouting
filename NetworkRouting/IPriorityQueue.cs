@@ -7,11 +7,10 @@ namespace NetworkRouting
 {
     interface IPriorityQueue
     {
-        void insertKey();
         int deleteMin();
         void decreaseKey(int changedIndex);
-        void makeQueue();
+        void makeQueue(double[] distVals);
 
-        int size();
+        int getSize();
     }
 }

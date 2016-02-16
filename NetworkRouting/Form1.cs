@@ -53,6 +53,8 @@ namespace NetworkRouting
 
         private void generateButton_Click(object sender, EventArgs e)
         {
+            Console.WriteLine("generateButton_Click::start");
+
             int randomSeed = int.Parse(randomSeedBox.Text);
             int size = int.Parse(sizeBox.Text);
 
@@ -64,6 +66,8 @@ namespace NetworkRouting
             List<PointF> points = generatePoints(size, rand);
             resetImageToPoints(points);
             this.points = points;
+
+            Console.WriteLine("generateButton_Click::end");
         }
 
         // Generates the distance matrix.  Values of -1 indicate a missing edge.  Loopbacks are at a cost of 0.
@@ -162,7 +166,16 @@ namespace NetworkRouting
 
         private void solveButton_Clicked()
         {
+            Console.WriteLine("solveButton_Clicked::start");
+
             // *** Implement this method, use the variables "startNodeIndex" and "stopNodeIndex" as the indices for your start and stop points, respectively ***
+            ArrayPQueue arrayQueue = new ArrayPQueue();
+
+            List<int> reversePath = Dijkstra.run(adjacencyList, points, startNodeIndex, stopNodeIndex, arrayQueue);
+
+            Console.Write(reversePath.ToString());
+
+            Console.WriteLine("solveButton_Clicked::end");
         }
 
         private Boolean startStopToggle = true;
