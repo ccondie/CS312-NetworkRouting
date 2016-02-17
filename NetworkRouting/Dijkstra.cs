@@ -36,11 +36,11 @@ namespace NetworkRouting
             {
                 //remove the smallest entry in the pQueue, store in minIndex
                 int minIndex = pQueue.deleteMin();
-                Console.WriteLine("pQueue.size - " + pQueue.getSize());
                 //for each element (adjPoint) in the adjList for index (minIndex)
                 foreach (int adjPoint in adjList[minIndex])
                 {
                     double newDist = dist[minIndex] + distBetweenPoints(pointList[minIndex], pointList[adjPoint]);
+                    Console.WriteLine("minIndex: " + minIndex + " - adjIndex: " + adjPoint + " - dist[adjPoint]: " + dist[adjPoint] + " - newDist: " + newDist);
                     //if dist[adjPoint] > dist[minIndex] + length(minIdex, adjPoint)
                     if (dist[adjPoint] > newDist)
                     {
@@ -49,6 +49,8 @@ namespace NetworkRouting
                         pQueue.decreaseKey(adjPoint);
                     }
                 }
+
+                Console.WriteLine();
             }
 
             //if the endIndex does not have a previous node

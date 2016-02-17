@@ -173,7 +173,8 @@ namespace NetworkRouting
 
             List<int> reversePath = Dijkstra.run(adjacencyList, points, startNodeIndex, stopNodeIndex, arrayQueue);
 
-            Console.Write(reversePath.ToString());
+            if(reversePath != null)
+                Console.Write(reversePath.ToString());
 
             Console.WriteLine("solveButton_Clicked::end");
         }
