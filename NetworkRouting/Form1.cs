@@ -172,9 +172,23 @@ namespace NetworkRouting
             ArrayPQueue arrayQueue = new ArrayPQueue();
 
             List<int> reversePath = Dijkstra.run(adjacencyList, points, startNodeIndex, stopNodeIndex, arrayQueue);
+            Console.WriteLine("completed path");
 
             if(reversePath != null)
-                Console.Write(reversePath.ToString());
+            {
+                for(int i = 0; i < reversePath.Count; i++)
+                {
+                    if(i != reversePath.Count - 1)
+                    {
+                        graphics.DrawLine(Pens.Blue, points[reversePath[i]], points[reversePath[i + 1]]);
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+                Console.WriteLine(reversePath.ToString());
 
             Console.WriteLine("solveButton_Clicked::end");
         }

@@ -8,7 +8,7 @@ namespace NetworkRouting
     interface IPriorityQueue
     {
         int deleteMin();
-        void decreaseKey(int changedIndex);
+        void decreaseKey(int changedIndex, double newDist);
         void makeQueue(double[] distVals);
 
         int getSize();

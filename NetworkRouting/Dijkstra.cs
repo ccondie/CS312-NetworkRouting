@@ -34,8 +34,10 @@ namespace NetworkRouting
             //while pQueue is not empty
             while (pQueue.getSize() != 0)
             {
+                Console.Write("PQUEUE.SIZE: " + pQueue.getSize());
                 //remove the smallest entry in the pQueue, store in minIndex
                 int minIndex = pQueue.deleteMin();
+                Console.WriteLine(" minIndex: " + minIndex + " dist.length: " + dist.Length + " prev.length: " + prev.Length + " adjList.Count: " + adjList.Count);
                 //for each element (adjPoint) in the adjList for index (minIndex)
                 foreach (int adjPoint in adjList[minIndex])
                 {
@@ -46,14 +48,14 @@ namespace NetworkRouting
                     {
                         dist[adjPoint] = newDist;
                         prev[adjPoint] = minIndex;
-                        pQueue.decreaseKey(adjPoint);
+                        pQueue.decreaseKey(adjPoint, newDist);
                     }
                 }
-
                 Console.WriteLine();
             }
 
             //if the endIndex does not have a previous node
+            Console.WriteLine("prev.length:" + prev.Length + " - endIndex: " + endIndex);
             if(prev[endIndex] == -1)
             {
                 //then there is no path to the endIndex
@@ -68,10 +70,13 @@ namespace NetworkRouting
             }
             else
             {
+                Console.WriteLine("dijkstra::run::end::reversePath");
                 //back trace from the endIndex to the startIndex, generating a return list in the process
                 int currentIndex = endIndex;
-                while(currentIndex != startIndex)
+              
+                while (currentIndex != startIndex)
                 {
+                    Console.WriteLine("dijkstra::run::end::reversePath::currentIndex: " + currentIndex);
                     reversePathIndex.Add(currentIndex);
                     currentIndex = prev[currentIndex];
                 }

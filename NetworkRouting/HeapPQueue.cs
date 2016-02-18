@@ -7,7 +7,7 @@ namespace NetworkRouting
 {
     class HeapPQueue : IPriorityQueue
     {
-        public void decreaseKey(int changedIndex)
+        public void decreaseKey(int changedIndex, double newDist)
         {
             throw new NotImplementedException();
         }
