@@ -11,7 +11,7 @@ namespace NetworkRouting
         //returns a list of point indexs to the inputed list of points, representing the path from the endIndex to the startIndex
         public static List<int> run(List<HashSet<int>> adjList, List<PointF> pointList, int startIndex, int endIndex, IPriorityQueue pQueue)
         {
-            Console.WriteLine("dijkstra::run::start");
+//            Console.WriteLine("dijkstra::run::start");
             
             List<int> reversePathIndex = new List<int>();
 
@@ -34,15 +34,15 @@ namespace NetworkRouting
             //while pQueue is not empty
             while (pQueue.getSize() != 0)
             {
-                Console.Write("PQUEUE.SIZE: " + pQueue.getSize());
+//                Console.Write("PQUEUE.SIZE: " + pQueue.getSize());
                 //remove the smallest entry in the pQueue, store in minIndex
                 int minIndex = pQueue.deleteMin();
-                Console.WriteLine(" minIndex: " + minIndex + " dist.length: " + dist.Length + " prev.length: " + prev.Length + " adjList.Count: " + adjList.Count);
+//                Console.WriteLine(" minIndex: " + minIndex + " dist.length: " + dist.Length + " prev.length: " + prev.Length + " adjList.Count: " + adjList.Count);
                 //for each element (adjPoint) in the adjList for index (minIndex)
                 foreach (int adjPoint in adjList[minIndex])
                 {
                     double newDist = dist[minIndex] + distBetweenPoints(pointList[minIndex], pointList[adjPoint]);
-                    Console.WriteLine("minIndex: " + minIndex + " - adjIndex: " + adjPoint + " - dist[adjPoint]: " + dist[adjPoint] + " - newDist: " + newDist);
+//                    Console.WriteLine("minIndex: " + minIndex + " - adjIndex: " + adjPoint + " - dist[adjPoint]: " + dist[adjPoint] + " - newDist: " + newDist);
                     //if dist[adjPoint] > dist[minIndex] + length(minIdex, adjPoint)
                     if (dist[adjPoint] > newDist)
                     {
@@ -51,38 +51,38 @@ namespace NetworkRouting
                         pQueue.decreaseKey(adjPoint, newDist);
                     }
                 }
-                Console.WriteLine();
+//                Console.WriteLine();
             }
 
             //if the endIndex does not have a previous node
-            Console.WriteLine("prev.length:" + prev.Length + " - endIndex: " + endIndex);
+//            Console.WriteLine("prev.length:" + prev.Length + " - endIndex: " + endIndex);
             if(prev[endIndex] == -1)
             {
                 //then there is no path to the endIndex
-                Console.WriteLine("dijkstra::run::end::null");
+//                Console.WriteLine("dijkstra::run::end::null");
                 
-                for(int i = 0; i < prev.Length; i++)
-                {
-                    Console.WriteLine("[" + i + "] - " + dist[i] + " : " + prev[i]);
-                }
+//                for(int i = 0; i < prev.Length; i++)
+//                {
+//                    Console.WriteLine("[" + i + "] - " + dist[i] + " : " + prev[i]);
+//                }
 
                 return null;
             }
             else
             {
-                Console.WriteLine("dijkstra::run::end::reversePath");
+//                Console.WriteLine("dijkstra::run::end::reversePath");
                 //back trace from the endIndex to the startIndex, generating a return list in the process
                 int currentIndex = endIndex;
               
                 while (currentIndex != startIndex)
                 {
-                    Console.WriteLine("dijkstra::run::end::reversePath::currentIndex: " + currentIndex);
+//                    Console.WriteLine("dijkstra::run::end::reversePath::currentIndex: " + currentIndex);
                     reversePathIndex.Add(currentIndex);
                     currentIndex = prev[currentIndex];
                 }
                 reversePathIndex.Add(startIndex);
 
-                Console.WriteLine("dijkstra::run::end::path");
+//                Console.WriteLine("dijkstra::run::end::path");
                 return reversePathIndex;
             }
         }

@@ -7,6 +7,11 @@ namespace NetworkRouting
 {
     class HeapPQueue : IPriorityQueue
     {
+        double[] queue;
+        int[] elementLocation;
+
+        int size;
+
         public void decreaseKey(int changedIndex, double newDist)
         {
             throw new NotImplementedException();
@@ -19,6 +24,7 @@ namespace NetworkRouting
 
         public void makeQueue(double[] distVals)
         {
+
             throw new NotImplementedException();
         }
 

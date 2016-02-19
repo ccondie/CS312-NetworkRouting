@@ -23,7 +23,7 @@ namespace NetworkRouting
 
             for(int i = 0; i < queue.Length; i++)
             {
-                Console.WriteLine("\tqueue[" + i + "]: " + queue[i]);
+//                Console.WriteLine("\tqueue[" + i + "]: " + queue[i]);
                 if ((queue[i] != -1) && (queue[i] < min))
                 {
                     min = queue[i];
