@@ -9,8 +9,11 @@ namespace NetworkRouting
     {
         int deleteMin();
         void decreaseKey(int changedIndex, double newDist);
-        void makeQueue(double[] distVals);
+
+        void makeQueue(int n);
 
         int getSize();
+
+        double getDist(int index);
     }
 }

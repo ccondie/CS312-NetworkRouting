@@ -23,7 +23,6 @@ namespace NetworkRouting
 
             for(int i = 0; i < queue.Length; i++)
             {
-//                Console.WriteLine("\tqueue[" + i + "]: " + queue[i]);
                 if ((queue[i] != -1) && (queue[i] < min))
                 {
                     min = queue[i];
@@ -37,17 +36,21 @@ namespace NetworkRouting
             return minIndex;
         }
 
-        public void makeQueue(double[] distVals)
+        public void makeQueue(int n)
         {
-            size = distVals.Length;
-            queue = new double[distVals.Length];
-            for(int i = 0; i < distVals.Length; i++)
+            size = n;
+            queue = new double[n];
+
+            for(int i = 0; i < n; i++)
             {
-                queue[i] = distVals[i];
+                queue[i] = double.MaxValue;
             }
         }
 
         public int getSize()
         {   return size;    }
+
+        public double getDist(int index)
+        {    return queue[index];     }
     }
 }
